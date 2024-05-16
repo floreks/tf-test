@@ -15,7 +15,7 @@ resource "null_resource" "printer" {
   for_each = random_string.random
 
   provisioner "local-exec" {
-    command = "echo ${each.value.result}; sleep 5"
+    command = "echo ${each.value.result}; sleep 10"
   }
 
   depends_on = [random_string.random]
