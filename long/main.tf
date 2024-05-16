@@ -26,6 +26,16 @@ output "sensitive" {
   sensitive =  true
 }
 
+output "first" {
+  value = random_string.random[0]
+  sensitive = false
+}
+
+output "first_sensitive" {
+  value = random_string.random[0]
+  sensitive = true
+}
+
 output "standard" {
   value = [ for i, s in random_string.random : s ]
   sensitive =  false
