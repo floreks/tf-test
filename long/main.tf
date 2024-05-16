@@ -22,21 +22,21 @@ resource "null_resource" "printer" {
 }
 
 output "sensitive" {
-  value = [ for i, s in random_string.random : s ]
+  value = [ for i, s in random_string.random : s.result ]
   sensitive =  true
 }
 
 output "first" {
-  value = random_string.random[0].result
+  value = random_string.random.result
   sensitive = false
 }
 
 output "first_sensitive" {
-  value = random_string.random[0].result
+  value = random_string.random.result
   sensitive = true
 }
 
 output "standard" {
-  value = [ for i, s in random_string.random : s ]
+  value = [ for i, s in random_string.random : s.result ]
   sensitive =  false
 }
