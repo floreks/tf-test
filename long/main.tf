@@ -27,12 +27,12 @@ output "sensitive" {
 }
 
 output "first" {
-  value = random_string.random[0]
+  value = random_string.random[0].result
   sensitive = false
 }
 
 output "first_sensitive" {
-  value = random_string.random[0]
+  value = random_string.random[0].result
   sensitive = true
 }
 
