@@ -27,7 +27,7 @@ variable "strings" {
 }
 
 resource "random_string" "random" {
-  for_each = { for s in var.strings : s => s }
+  for_each = { for i, s in var.strings : i => i }
 
   length  = 16
   upper   = false
