@@ -1,4 +1,4 @@
-- name: My first play
+- name: Variables playbook tests
   hosts: localhost
   tasks:
     - name: Ping my hosts
