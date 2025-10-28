@@ -32,7 +32,7 @@ resource "google_compute_instance" "default" {
 
   metadata = {
     owner = "floreks"
-    managed-by : "plural"
+    managed-by = "plural"
   }
 
   metadata_startup_script = "echo hi > /test.txt"
