@@ -32,10 +32,11 @@ resource "google_compute_instance" "default" {
 
   metadata = {
     owner = "floreks"
-    managed-by : "plural"
+    managed-by = "plural"
   }
 
-  metadata_startup_script = "echo hi > /test.txt"
+  # Removed insecure startup script that wrote to /test.txt
+# metadata_startup_script = "echo hi > /test.txt"
 
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.

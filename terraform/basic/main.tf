@@ -5,9 +5,10 @@ resource "random_string" "random" {
 }
 
 resource "null_resource" "default" {
-  provisioner "local-exec" {
-    command = "echo ${random_string.random.result}"
-  }
+  # Removed insecure echo command that may leak info
+  # provisioner "local-exec" {
+  #   command = "echo ${random_string.random.result}"
+  # }
 }
 
 output "test" {
