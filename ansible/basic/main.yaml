@@ -1,9 +1,12 @@
+# This playbook pings the localhost and prints a "Hello world" message.
 - name: My first play
   hosts: localhost
   tasks:
+    # Pings the localhost to check for connectivity.
     - name: Ping my hosts
       ansible.builtin.ping:
 
+    # Prints a "Hello world" message to the console.
     - name: Print message
       ansible.builtin.debug:
         msg: Hello world
