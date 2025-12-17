@@ -1,3 +1,6 @@
+# Variables Example Configuration
+# Uses input variables to control the generation of a random string.
+
 resource "random_string" "random" {
   length  = var.random_string_length
   upper   = var.random_string_upper
@@ -11,5 +14,6 @@ resource "null_resource" "default" {
 }
 
 output "test" {
-  value = random_string.random.result
+  description = "The generated random string result."
+  value       = random_string.random.result
 }

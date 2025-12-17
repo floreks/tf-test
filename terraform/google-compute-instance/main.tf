@@ -1,14 +1,19 @@
+# Google Compute Instance Configuration
+# Provisions a GCE instance with a custom service account.
+
 provider "google" {
   project     = var.project_id
   region      = var.region
 }
 
+# Create a dedicated service account for the instance
 resource "google_service_account" "default" {
   account_id   = var.service_account_id
   display_name = "Test Infrastructure Stack SA"
   project      = var.project_id
 }
 
+# Create the Compute Engine instance
 resource "google_compute_instance" "default" {
   name         = var.instance_name
   project      = var.project_id
@@ -17,6 +22,7 @@ resource "google_compute_instance" "default" {
 
   tags = ["floreks", "infrastructure-stack", "test"]
 
+  # Boot disk configuration
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
@@ -38,7 +44,7 @@ resource "google_compute_instance" "default" {
   metadata_startup_script = "echo hi > /test.txt"
 
   service_account {
-    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    # Associate the custom service account with the instance
     email  = google_service_account.default.email
     scopes = ["cloud-platform"]
   }

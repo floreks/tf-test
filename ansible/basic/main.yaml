@@ -1,9 +1,13 @@
+# Basic Ansible Playbook
+# This playbook demonstrates a simple execution against localhost.
 - name: My first play
   hosts: localhost
   tasks:
+    # Uses the ping module to verify connectivity and python availability
     - name: Ping my hosts
       ansible.builtin.ping:
 
+    # Uses the debug module to print a static message to stdout
     - name: Print message
       ansible.builtin.debug:
         msg: Hello world
