@@ -1,9 +1,14 @@
+# This playbook demonstrates using variables in Ansible tasks.
 - name: Variables playbook tests
   hosts: localhost
   tasks:
+    # Verifies connectivity
     - name: Ping my hosts
       ansible.builtin.ping:
 
+    # Prints a message defined in the 'debug_message' variable.
+    # The variable 'debug_message' needs to be defined when running the playbook
+    # (e.g., via -e "debug_message='foo'").
     - name: Print message
       ansible.builtin.debug:
         msg: "{{ debug_message }}"

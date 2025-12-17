@@ -1,3 +1,7 @@
+# This configuration provisions a Google Compute Engine instance and a Service Account.
+# NOTE: This configuration relies on input variables (project_id, region, etc.) that are
+# not defined in this directory. They must be supplied externally.
+
 provider "google" {
   project     = var.project_id
   region      = var.region

@@ -18,6 +18,7 @@ resource "null_resource" "printer" {
   for_each = random_string.random
 
   provisioner "local-exec" {
+    # Simulate a long-running process with sleep
     command = "echo ${each.value.result}; sleep 5"
   }
 
