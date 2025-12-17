@@ -1,9 +1,12 @@
+# This is a simple Ansible playbook that demonstrates basic concepts.
 - name: My first play
-  hosts: localhost
+  hosts: localhost # This playbook runs on the local machine.
   tasks:
+    # This task checks if the host is reachable.
     - name: Ping my hosts
       ansible.builtin.ping:
 
+    # This task prints a message to the console.
     - name: Print message
       ansible.builtin.debug:
         msg: Hello world
