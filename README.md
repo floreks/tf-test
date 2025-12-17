@@ -15,3 +15,4 @@ Located in `terraform/`.
 *   **variables**: Similar to basic, but parameterized to demonstrate variable usage.
 *   **google-compute-instance**: Provisions a Google Compute Engine instance with a service account.
 *   **long**: Simulates a long-running process by generating multiple random strings and sleeping.
+
