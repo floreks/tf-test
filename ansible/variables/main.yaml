@@ -1,9 +1,11 @@
 - name: Variables playbook tests
   hosts: localhost
   tasks:
+    # Ensure connectivity to the host
     - name: Ping my hosts
       ansible.builtin.ping:
 
+    # Output a debug message using the 'debug_message' variable
     - name: Print message
       ansible.builtin.debug:
         msg: "{{ debug_message }}"
