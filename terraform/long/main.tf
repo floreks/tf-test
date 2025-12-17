@@ -6,6 +6,7 @@ variable "strings" {
   type = set(string)
 }
 
+# Generate multiple random strings based on the input set
 resource "random_string" "random" {
   for_each = { for i, s in var.strings : i => i }
 
@@ -14,6 +15,7 @@ resource "random_string" "random" {
   special = false
 }
 
+# Simulate a long-running process by sleeping for 5 seconds for each string
 resource "null_resource" "printer" {
   for_each = random_string.random
 
