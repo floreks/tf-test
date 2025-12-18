@@ -1,6 +1,15 @@
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 4.0"
+    }
+  }
+}
+
 provider "google" {
-  project     = var.project_id
-  region      = var.region
+  project = var.project_id
+  region  = var.region
 }
 
 resource "google_service_account" "default" {
@@ -15,7 +24,7 @@ resource "google_compute_instance" "default" {
   machine_type = var.machine_type
   zone         = var.zone
 
-  tags = ["floreks", "infrastructure-stack", "test"]
+  tags = var.tags
 
   boot_disk {
     initialize_params {
@@ -27,12 +36,12 @@ resource "google_compute_instance" "default" {
   }
 
   network_interface {
-    network = "default"
+    network = var.network
   }
 
   metadata = {
-    owner = "floreks"
-    managed-by : "plural"
+    owner      = "floreks"
+    managed-by = "plural"
   }
 
   metadata_startup_script = "echo hi > /test.txt"
@@ -40,6 +49,6 @@ resource "google_compute_instance" "default" {
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     email  = google_service_account.default.email
-    scopes = ["cloud-platform"]
+    scopes = ["userinfo-email", "compute-ro"]
   }
 }
