@@ -1,5 +1,7 @@
 - name: Variables playbook tests
   hosts: localhost
+  vars:
+    debug_message: "Hello world"
   tasks:
     - name: Ping my hosts
       ansible.builtin.ping:
