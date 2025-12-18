@@ -6,6 +6,7 @@ variable "strings" {
   type = set(string)
 }
 
+# Generate a random string for each item in the input set
 resource "random_string" "random" {
   for_each = { for i, s in var.strings : i => i }
 
@@ -14,6 +15,7 @@ resource "random_string" "random" {
   special = false
 }
 
+# Print each result after a delay
 resource "null_resource" "printer" {
   for_each = random_string.random
 
@@ -24,11 +26,13 @@ resource "null_resource" "printer" {
   depends_on = [random_string.random]
 }
 
+# Output the random strings as a sensitive list
 output "sensitive" {
   value = [ for i, s in random_string.random : s.result ]
   sensitive =  true
 }
 
+# Output the random strings as a standard list
 output "standard" {
   value = [ for i, s in random_string.random : s.result ]
   sensitive =  false

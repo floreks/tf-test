@@ -3,12 +3,14 @@ provider "google" {
   region      = var.region
 }
 
+# Create a Service Account for the infrastructure stack
 resource "google_service_account" "default" {
   account_id   = var.service_account_id
   display_name = "Test Infrastructure Stack SA"
   project      = var.project_id
 }
 
+# Create a Compute Instance
 resource "google_compute_instance" "default" {
   name         = var.instance_name
   project      = var.project_id
