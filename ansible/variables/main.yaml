@@ -1,9 +1,21 @@
+# This Ansible playbook demonstrates how to use variables to customize the output of a task.
+
+# The "name" of the play is "Variables playbook tests".
 - name: Variables playbook tests
+  # The "hosts" directive specifies the hosts that the play will be run on.
+  # In this case, it is "localhost".
   hosts: localhost
+  # The "tasks" section contains a list of tasks that will be executed on the hosts.
   tasks:
+    # The first task is to ping the hosts.
     - name: Ping my hosts
+      # The "ansible.builtin.ping" module is used to ping the hosts.
       ansible.builtin.ping:
 
+    # The second task is to print a message.
     - name: Print message
+      # The "ansible.builtin.debug" module is used to print a message.
+      # The "msg" parameter is set to the value of the "debug_message" variable.
+      # This variable is expected to be defined elsewhere, for example, in a variables file or passed in the command line.
       ansible.builtin.debug:
         msg: "{{ debug_message }}"
