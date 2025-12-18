@@ -95,3 +95,5 @@ ansible-playbook ansible/variables/main.yaml -e debug_message="Hello from Ansibl
 ---
 
 Contributions and tweaks welcome via pull requests.
+
+Note: Always review Terraform plans before apply and run 'terraform destroy' to clean up resources.
