@@ -1,3 +1,4 @@
+# A set of strings used to seed the random generation
 variable "strings" {
   default = [
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
@@ -6,6 +7,7 @@ variable "strings" {
   type = set(string)
 }
 
+# Generate a random string for each item in the var.strings set
 resource "random_string" "random" {
   for_each = { for i, s in var.strings : i => i }
 
@@ -14,6 +16,7 @@ resource "random_string" "random" {
   special = false
 }
 
+# Echo each generated result with a delay, demonstrating parallel execution (or serialization) and dependencies
 resource "null_resource" "printer" {
   for_each = random_string.random
 
@@ -21,14 +24,17 @@ resource "null_resource" "printer" {
     command = "echo ${each.value.result}; sleep 5"
   }
 
+  # Ensure the string is generated before printing
   depends_on = [random_string.random]
 }
 
+# Output the results marked as sensitive
 output "sensitive" {
   value = [ for i, s in random_string.random : s.result ]
   sensitive =  true
 }
 
+# Output the results in plain text
 output "standard" {
   value = [ for i, s in random_string.random : s.result ]
   sensitive =  false
