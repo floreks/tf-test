@@ -1,9 +1,19 @@
+# This is a basic Ansible playbook that demonstrates how to ping a host and print a message.
+
+# The "name" of the play is "My first play".
 - name: My first play
+  # The "hosts" directive specifies the hosts that the play will be run on.
+  # In this case, it is "localhost".
   hosts: localhost
+  # The "tasks" section contains a list of tasks that will be executed on the hosts.
   tasks:
+    # The first task is to ping the hosts.
     - name: Ping my hosts
+      # The "ansible.builtin.ping" module is used to ping the hosts.
       ansible.builtin.ping:
 
+    # The second task is to print a message.
     - name: Print message
+      # The "ansible.builtin.debug" module is used to print a message.
       ansible.builtin.debug:
         msg: Hello world
