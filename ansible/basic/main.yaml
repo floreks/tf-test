@@ -1,9 +1,12 @@
+# This playbook demonstrates a basic Ansible play running on localhost.
 - name: My first play
   hosts: localhost
   tasks:
+    # Verifies connectivity to the local host
     - name: Ping my hosts
       ansible.builtin.ping:
 
+    # Prints a static debug message to the console
     - name: Print message
       ansible.builtin.debug:
         msg: Hello world
