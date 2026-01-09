@@ -1,9 +1,11 @@
 - name: My first play
   hosts: localhost
   tasks:
+    # Test connectivity to the host
     - name: Ping my hosts
       ansible.builtin.ping:
 
+    # Output a debug message
     - name: Print message
       ansible.builtin.debug:
         msg: Hello world
