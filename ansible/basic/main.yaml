@@ -1,9 +1,12 @@
 - name: My first play
   hosts: localhost
+  # This playbook runs on the local machine to demonstrate basic tasks
   tasks:
+    # Check connectivity to the host
     - name: Ping my hosts
       ansible.builtin.ping:
 
+    # Output a static debug message
     - name: Print message
       ansible.builtin.debug:
         msg: Hello world
