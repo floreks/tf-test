@@ -1,3 +1,4 @@
+# This variable defines a set of strings to iterate over.
 variable "strings" {
   default = [
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
@@ -6,6 +7,7 @@ variable "strings" {
   type = set(string)
 }
 
+# This resource generates a random string for each item in the `strings` variable.
 resource "random_string" "random" {
   for_each = { for i, s in var.strings : i => i }
 
@@ -14,6 +16,7 @@ resource "random_string" "random" {
   special = false
 }
 
+# This resource prints each generated random string with a 5-second delay.
 resource "null_resource" "printer" {
   for_each = random_string.random
 
@@ -24,11 +27,13 @@ resource "null_resource" "printer" {
   depends_on = [random_string.random]
 }
 
+# This output displays the generated random strings as a sensitive value.
 output "sensitive" {
   value = [ for i, s in random_string.random : s.result ]
   sensitive =  true
 }
 
+# This output displays the generated random strings as a standard value.
 output "standard" {
   value = [ for i, s in random_string.random : s.result ]
   sensitive =  false
