@@ -15,11 +15,11 @@ resource "google_compute_instance" "default" {
   machine_type = var.machine_type
   zone         = var.zone
 
-  tags = ["floreks", "infrastructure-stack", "test"]
+  tags = var.tags
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = var.boot_disk_image
       labels = {
         my_label = "value"
       }
@@ -27,15 +27,12 @@ resource "google_compute_instance" "default" {
   }
 
   network_interface {
-    network = "default"
+    network = var.network
   }
 
-  metadata = {
-    owner = "floreks"
-    managed-by : "plural"
-  }
+  metadata = var.metadata
 
-  metadata_startup_script = "echo hi > /test.txt"
+  metadata_startup_script = var.metadata_startup_script
 
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
