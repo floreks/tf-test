@@ -1,9 +1,14 @@
+# This playbook demonstrates the use of variables in Ansible.
 - name: Variables playbook tests
-  hosts: localhost
+  hosts: localhost # This playbook runs on the local machine.
   tasks:
+    # This task checks if the host is reachable.
     - name: Ping my hosts
       ansible.builtin.ping:
 
+    # This task prints a message using a variable.
+    # The value of the 'debug_message' variable can be passed at runtime.
+    # Example: ansible-playbook main.yaml --extra-vars "debug_message='Hello from a variable!'"
     - name: Print message
       ansible.builtin.debug:
         msg: "{{ debug_message }}"
