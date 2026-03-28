@@ -1,3 +1,16 @@
+terraform {
+  required_providers {
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.0"
+    }
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.0"
+    }
+  }
+}
+
 resource "random_string" "random" {
   length  = var.random_string_length
   upper   = var.random_string_upper
