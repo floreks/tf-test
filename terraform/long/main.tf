@@ -14,16 +14,6 @@ resource "random_string" "random" {
   special = false
 }
 
-resource "null_resource" "printer" {
-  for_each = random_string.random
-
-  provisioner "local-exec" {
-    command = "echo ${each.value.result}; sleep 5"
-  }
-
-  depends_on = [random_string.random]
-}
-
 output "sensitive" {
   value = [ for i, s in random_string.random : s.result ]
   sensitive =  true
@@ -31,5 +21,5 @@ output "sensitive" {
 
 output "standard" {
   value = [ for i, s in random_string.random : s.result ]
-  sensitive =  false
+  sensitive =  true
 }

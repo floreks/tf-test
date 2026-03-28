@@ -1,19 +1,21 @@
-provider "google" {
-  project     = var.project_id
-  region      = var.region
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+    }
+  }
 }
 
-resource "google_service_account" "default" {
-  account_id   = var.service_account_id
-  display_name = "Test Infrastructure Stack SA"
-  project      = var.project_id
+provider "google" {
+  project = var.project_id
+  region  = var.region
 }
 
 resource "google_compute_instance" "default" {
-  name         = var.instance_name
   project      = var.project_id
-  machine_type = var.machine_type
   zone         = var.zone
+  name         = var.instance_name
+  machine_type = var.machine_type
 
   tags = ["floreks", "infrastructure-stack", "test"]
 
@@ -31,15 +33,29 @@ resource "google_compute_instance" "default" {
   }
 
   metadata = {
-    owner = "floreks"
-    managed-by : "plural"
+    owner      = "floreks"
+    managed-by = "plural"
   }
 
   metadata_startup_script = "echo hi > /test.txt"
+}
 
-  service_account {
-    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = google_service_account.default.email
-    scopes = ["cloud-platform"]
-  }
+variable "project_id" {
+  type = string
+}
+
+variable "region" {
+  type = string
+}
+
+variable "zone" {
+  type = string
+}
+
+variable "instance_name" {
+  type = string
+}
+
+variable "machine_type" {
+  type = string
 }
