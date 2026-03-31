@@ -1,9 +1,12 @@
+# This playbook pings the localhost and prints a configurable message.
 - name: Variables playbook tests
   hosts: localhost
   tasks:
+    # Pings the localhost to check for connectivity.
     - name: Ping my hosts
       ansible.builtin.ping:
 
+    # Prints a configurable message to the console.
     - name: Print message
       ansible.builtin.debug:
         msg: "{{ debug_message }}"
