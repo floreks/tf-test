@@ -1,2 +1,6 @@
 crd
 .idea
+
+# Terraform initialization artifacts
+**/.terraform/
+**/.terraform.lock.hcl
